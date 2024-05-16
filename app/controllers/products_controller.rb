@@ -1,6 +1,7 @@
 class ProductsController < ApplicationController
-    def index 
-        @products = product.all 
-        render: :index 
+    def index
+        @products = Product.all
+        render :index
+      end
     end
-end
+
