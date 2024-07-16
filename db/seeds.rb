@@ -8,3 +8,6 @@ product = Product.new(name: "Harry Potter and the Prisoner of Azkaban
 Novel by J. K. Rowling
 ", price: "19.99", image_url: "https://m.media-amazon.com/images/I/812CcFkEPCL._AC_UF1000,1000_QL80_.jpg", description: "Harry Potter and the Prisoner of Azkaban is a fantasy novel written by British author J. K. Rowling and is the third in the Harry Potter series.")
 product.save
+
+Supplier.create(name: "barnes and noble", email: "barnesandnoble1@example.com", phone_number: "555-1234")
+Supplier.create(name: "Books", email: "Books@example.com", phone_number: "555-5678")
