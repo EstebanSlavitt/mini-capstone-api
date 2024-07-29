@@ -5,6 +5,12 @@ class Product < ApplicationRecord
 
   validates :description, length: { minimum: 1, maximum: 500 }
 
+  has_many :images, dependent: :destroy
+
+  def supplier
+    Supplier.find_by(id: supplier_id)
+  end
+
   def is_discounted?
     price <= 10
   end

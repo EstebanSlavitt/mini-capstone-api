@@ -10,4 +10,4 @@ Novel by J. K. Rowling
 product.save
 
 Supplier.create(name: "barnes and noble", email: "barnesandnoble1@example.com", phone_number: "555-1234")
-Supplier.create(name: "Books", email: "Books@example.com", phone_number: "555-5678")
+Supplier.create(name: "Books", email: "Books @example.com", phone_number: "555-5678")

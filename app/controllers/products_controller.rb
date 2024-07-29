@@ -8,9 +8,13 @@ class ProductsController < ApplicationController
     @product = Product.create(
       name: params[:name],
       price: params[:price],
-      image_url: params[:image_url],
       description: params[:description],
     )
+    if @product.valid?
+      render :show, status: 200
+    else
+      render json: { errors: @product.errors.full_messages }, status: 422
+    end
   end
 
   def show
@@ -19,25 +23,23 @@ class ProductsController < ApplicationController
   end
 
   def update
-    @product = Product.find_by(id: params[id])
+    @product = Product.find_by(id: params[:id])
     @product.update(
       name: params[:name] || @product.name,
       price: params[:price] || @product.price,
-      image_url: params[:image_url] || @product.image_url,
-      description: params[:description] || @product.image_url,
-    )
-    render :show
-  end
+      description: params[:description] || @product.description,
 
-  if @product.valid?
-    render :show, status: 200
-  else
-    render json: { errors: @product.errors.full_messages }, status: 422
+    )
+    if @product.valid?
+      render :show, status: 200
+    else
+      render json: { errors: @product.errors.full_messages }, status: 422
+    end
   end
 
   def destroy
-    @product = Product.find_by(id: params[id])
-    @product.destory
+    @product = Product.find_by(id: params[:id])
+    @product.destroy
     render json: { message: "Thanks its gone now!" }
   end
 end
