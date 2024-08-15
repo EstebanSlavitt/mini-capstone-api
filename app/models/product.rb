@@ -1,15 +1,15 @@
 class Product < ApplicationRecord
-  validates :name, presence: true, uniqueness: true
+  validates :name, presence: true
+  validates :name, uniqueness: true
+  validates :price, presence: true
+  validates :price, numericality: { greater_than: 0 }
+  validates :description, presence: true
+  validates :description, length: { in: 1..500 }
 
-  validates :price, presence: true, numericality: { greater_than: 0 }
+  belongs_to :supplier
 
-  validates :description, length: { minimum: 1, maximum: 500 }
-
-  has_many :images, dependent: :destroy
-
-  def supplier
-    Supplier.find_by(id: supplier_id)
-  end
+  has_many :images
+  has_many :orders
 
   def is_discounted?
     price <= 10
@@ -21,5 +21,13 @@ class Product < ApplicationRecord
 
   def total
     price + tax
+  end
+
+  def primary_image_url
+    if images.length > 0
+      images[0].url
+    else
+      "https://www.svgrepo.com/show/508699/landscape-placeholder.svg"
+    end
   end
 end
