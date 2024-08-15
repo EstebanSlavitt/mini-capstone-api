@@ -1,4 +1,4 @@
-equire "test_helper"
+require "test_helper"
 
 class OrdersControllerTest < ActionDispatch::IntegrationTest
   setup do
